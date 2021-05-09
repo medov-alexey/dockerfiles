@@ -7,6 +7,6 @@ RUN apk update; apk add jq curl git; cd /tmp; \
     echo "echo \"\$CRON\" sh /gcmr_for_docker.sh > /var/spool/cron/crontabs/root" >> /start.sh; \
     echo "nginx -g 'daemon on;'" >> /start.sh; \
     echo "busybox crond -f" >> /start.sh; \
-    echo el_count_message 0 > /usr/share/nginx/html/metrics; \
+    echo el_count_messages 0 > /usr/share/nginx/html/metrics; \
     chmod +x /start.sh
 CMD /start.sh
