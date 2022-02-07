@@ -1,4 +1,4 @@
-<b> Command example for use image medoff/redis:6-alpine </b>
+<b> Command example for run docker container with image medoff/redis:6-alpine </b>
 
 docker run -d --name redis-server -e memory_size=1024 -e password=12345678 medoff/redis:6-alpine
 
@@ -9,4 +9,5 @@ docker run -d --name redis-server -e memory_size=1024 -e password=12345678 medof
 memory_size - memory limit for redis-server
 
 password - password for connect to redis-server
+
 
