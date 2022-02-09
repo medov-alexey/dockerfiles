@@ -19,3 +19,11 @@ docker run -d --name tcp-balancer -e port=80 -e server1=192.168.1.220:80 -e serv
 <b>Maximum 5 backend servers supported</b>
 
 *server1, server2, server3, server4, server5*
+
+<b>Config in v1 image</b>
+
+*proxy_connect_timeout 60s;*
+
+*proxy_timeout 300s;*
+
+*proxy_buffer_size 512k;*
