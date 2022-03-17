@@ -6,7 +6,7 @@ docker run -d --name redis-server -e memory_size=1024 -e password=12345678 medof
 
 <b> Supported two environment params: </b>
 
-memory_size - memory limit for redis-server
+memory_size - memory limit for redis-server in megabytes
 
 password - password for connect to redis-server
 
