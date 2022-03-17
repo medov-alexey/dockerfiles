@@ -1,13 +1,17 @@
 #!/bin/bash
 #
-# If you want to use a different token, run this command in an already running consul:
+# If you want to use a different token, run these two commands in an already running consul:
 #
-# docker exec --rm -it consul:1.11 consul acl bootstrap
 #
-# Set the new environment value "TOKEN" in this file from the new SecretID value you got after running the command above. 
+#   1)  commands="consul acl bootstrap 2>&1 | awk '{print $ NF}' | sed s/[^0-9]//g  > /consul/data/acl-bootstrap-reset && consul acl bootstrap"
+#
+#   2)  docker exec -it -e script="$commands" consul sh -c 'echo $script > /tmp/script.sh; chmod +x /tmp/script.sh; sh /tmp/script.sh'
+#
+#
+# Then set the new environment value "TOKEN" in this file from the new SecretID value you got after running the commands above.
 #
 #---------------------------------------------------
-TOKEN=725e5217-9412-5da0-b5d5-f60afc02cac8
+TOKEN=d9828ae7-07c7-1c8a-de40-7152ee3964c2
 #---------------------------------------------------
 #
 # And then execute ./run.sh
@@ -15,6 +19,8 @@ TOKEN=725e5217-9412-5da0-b5d5-f60afc02cac8
 #---------------------------------------------------
 version=1.11
 #---------------------------------------------------
+
+
 
 
 echo '{"datacenter":"dc1","primary_datacenter":"dc1","server":true,"data_dir":"/consul/data","log_level":"INFO","node_name":"consul","client_addr":"0.0.0.0","ui_config":{"enabled":true},"telemetry":{"disable_compat_1.9":true},"acl":{"enabled":true,"default_policy":"deny","enable_token_persistence":true,"tokens":{"initial_management":"$TOKEN","agent":"$TOKEN"},"down_policy":"extend-cache"}}' | sed 's/$TOKEN/'$TOKEN'/g'> /tmp/consul-config.json
@@ -25,7 +31,7 @@ sleep 10
 
 echo
 
-docker ps | grep consul > /dev/null 2>&1 || docker logs consul 
+docker ps | grep consul > /dev/null 2>&1 || docker logs consul
 
 echo
 
