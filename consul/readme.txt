@@ -17,3 +17,7 @@ $(pwd)/run.sh
 # For delete Consul container use this command:
 
 docker rm -f consul
+
+# For delete Consul with data from docker volume
+
+docker rm -f consul; docker volume rm -f consul-data
